@@ -48,8 +48,20 @@
         rel,
         modestbranding,
         playsinline,
-        enablejsapi: '1'
+        enablejsapi: '1',
+        origin: window.location.origin
       });
+
+      let origin;
+      try {
+        origin = document.referrer ? new URL(document.referrer).origin : undefined;
+      } catch {
+        origin = undefined;
+      }
+
+      if (origin) {
+        embedParams.append('origin', origin);
+      }
 
       if (loop === '1') {
         embedParams.append('loop', '1');
