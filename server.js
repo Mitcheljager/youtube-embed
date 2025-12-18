@@ -6,17 +6,17 @@ const PORT = process.env.PORT || 3000
 
 app.use(express.static(path.join(process.cwd(), 'public')))
 
-app.get('/embed/:videoId', (req, res) => {
-  const videoId = req.params.videoId
-  const originalQuery = new URLSearchParams(req.query)
+app.get('/embed/:videoId', (request, result) => {
+  const videoId = request.params.videoId
+  const originalQuery = new URLSearchParams(request.query)
 
   originalQuery.set('v', videoId)
 
   const youtubeHtmlPath = path.join(process.cwd(), 'public', 'youtube.html')
 
-  res.sendFile(youtubeHtmlPath, {}, (err) => {
-    if (err) {
-      res.status(500).send('Error loading youtube.html')
+  result.sendFile(youtubeHtmlPath, {}, (error) => {
+    if (error) {
+      result.status(500).send('Error loading youtube.html')
     }
   })
 })
