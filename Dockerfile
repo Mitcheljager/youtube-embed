@@ -5,6 +5,10 @@ FROM node:18 AS build
 # Set the working directory inside the container
 WORKDIR /usr/src/app
 
+# Copy package.json and package-lock.json first to leverage Docker caching.
+# If these files don't change, subsequent builds can skip 'npm install'.
+COPY package*.json ./
+
 # Install dependencies
 RUN npm install
 
