@@ -1,5 +1,5 @@
-import express from 'express'
-import path from 'path'
+const express = require('express')
+const path = require('path')
 
 const app = express()
 const PORT = process.env.PORT || 3000
@@ -21,6 +21,6 @@ app.get('/embed/:videoId', (request, result) => {
   })
 })
 
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`Server running on port ${PORT}`)
 })
